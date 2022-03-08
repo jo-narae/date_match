@@ -1,6 +1,8 @@
 package com.example.dating.controller;
 
+import com.example.dating.domain.Match;
 import com.example.dating.dto.IdelInsertDTO;
+import com.example.dating.dto.MatchInsertDTO;
 import com.example.dating.mapper.IdelMapper;
 import com.example.dating.mapper.MemberMapper;
 import com.example.dating.domain.Idel;
@@ -77,5 +79,14 @@ public class MemberController {
     public void deleteMember(@PathVariable("id") int id) {
         Member member = memberService.findById(id);
         memberService.deleteMember(member);
+    }
+
+    @PostMapping("/{id}/matches")
+    public Match insertMatch(@PathVariable("id") int id, @RequestBody MatchInsertDTO request) {
+        Match match = new Match();
+        match.setFromMember(memberService.findById(id));
+        match.setToMember(memberService.findById(request.getToMemberId()));
+
+        return matchService.saveMatch(match);
     }
 }

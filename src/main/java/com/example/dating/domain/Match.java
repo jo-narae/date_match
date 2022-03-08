@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,6 +24,7 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_at")
     private Date createdAt;
