@@ -14,4 +14,8 @@ public class IdelService {
     public Idel saveIdel(Idel idel) {
         return idelRepository.save(idel);
     }
+
+    public void deleteIdel(int id) {
+        idelRepository.deleteById(id);
+    }
 }
