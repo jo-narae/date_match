@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface MatchRepository extends JpaRepository<Match, Integer> {
 
-    List<Match> findAllByToMember(Integer toMemberId);
+    List<Match> findAllByToMemberId(Integer toMemberId);
 
-    List<Match> findAllByFromMember(Integer fromMemberId);
+    List<Match> findAllByFromMemberId(Integer fromMemberId);
 }

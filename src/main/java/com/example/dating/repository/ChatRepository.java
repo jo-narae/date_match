@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ChatRepository extends JpaRepository<Chat, Integer> {
 
-    List<Chat> findAllByMatch(Integer matchId);
+    List<Chat> findAllByMatchId(Integer matchId);
 }
