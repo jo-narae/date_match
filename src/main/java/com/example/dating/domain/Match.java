@@ -9,51 +9,37 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Member {
+public class Match {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
-    private String name;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_at")
+    private Date createdAt;
 
-    @Column
-    private String phone;
+    @Column(name = "is_agree")
+    private int isAgree;
 
-    @Column
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
+    @ManyToOne
+    @JoinColumn(name = "from_member_id", foreignKey = @ForeignKey(name = "FK_MEMBER_TB_MATCH"))
+    private Member fromMember;
 
-    @Column(length = 3)
-    private int age;
-
-    @Column(length = 3)
-    private int tall;
-
-    @Column
-    private String img;
-
-    @Column
-    private String description;
+    @ManyToOne
+    @JoinColumn(name = "to_member_id", foreignKey = @ForeignKey(name = "FK_MEMBER_TB_MATCH2"))
+    private Member toMember;
 
     @OneToMany(cascade = CascadeType.REMOVE)
-    private List<Idel> idels;
-
-    @OneToMany
-    private List<Match> matches;
-
-    public enum Gender {
-        Man,
-        Woman
-    }
+    private List<Chat> chats;
 }
