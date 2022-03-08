@@ -21,7 +21,7 @@ public class Chat {
     @Column
     private String contents;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "match_id", nullable = false)
     private Match match;
 }

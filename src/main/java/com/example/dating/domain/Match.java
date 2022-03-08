@@ -17,8 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler"})
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Match {
 
     @Id
@@ -39,7 +37,4 @@ public class Match {
     @ManyToOne
     @JoinColumn(name = "to_member_id", foreignKey = @ForeignKey(name = "FK_MEMBER_TB_MATCH2"))
     private Member toMember;
-
-    @OneToMany(mappedBy = "match", cascade = CascadeType.REMOVE)
-    private List<Chat> chats;
 }
