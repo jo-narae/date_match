@@ -40,6 +40,6 @@ public class Match {
     @JoinColumn(name = "to_member_id", foreignKey = @ForeignKey(name = "FK_MEMBER_TB_MATCH2"))
     private Member toMember;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "match", cascade = CascadeType.REMOVE)
     private List<Chat> chats;
 }

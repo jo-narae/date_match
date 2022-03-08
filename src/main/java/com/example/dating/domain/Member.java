@@ -46,10 +46,10 @@ public class Member {
     @Column
     private String description;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
     private List<Idel> idels;
 
-    @OneToMany
+    @OneToMany(mappedBy = "fromMember")
     private List<Match> matches;
 
     public enum Gender {
